@@ -1,4 +1,3 @@
-
 # 📚 BookNook
 
 ### Your Digital Bookshelf, Reimagined
@@ -13,11 +12,11 @@ Built with **Next.js 16, React, TypeScript, Express.js, MongoDB, and Better Auth
 
 ## 🌐 Live Links
 
-| Resource | Link |
-|----------|------|
-| 🌍 Live Website | [Visit BookNook](https://booknookclient.vercel.app/) |
+| Resource               | Link                                                                 |
+| ---------------------- | -------------------------------------------------------------------- |
+| 🌍 Live Website        | [Visit BookNook](https://booknookclient.vercel.app/)                 |
 | 💻 Frontend Repository | [GitHub Frontend](https://github.com/Mahjabinjannat/BookNook-client) |
-| ⚙️ Backend Repository | [GitHub Backend](https://github.com/Mahjabinjannat/BookNook-server) |
+| ⚙️ Backend Repository  | [GitHub Backend](https://github.com/Mahjabinjannat/BookNook-server)  |
 
 ---
 
@@ -78,27 +77,27 @@ Built with **Next.js 16, React, TypeScript, Express.js, MongoDB, and Better Auth
 
 ### Frontend
 
-| Technology | Purpose |
-|------------|---------|
-| Next.js 16 | React framework and routing |
-| React | Component-based user interface |
-| TypeScript | Type-safe development |
-| Tailwind CSS | Responsive styling |
-| shadcn/ui | Reusable UI components |
-| Lucide React | Icons |
-| Sonner | Toast notifications |
-| Better Auth | Authentication and session management |
+| Technology   | Purpose                               |
+| ------------ | ------------------------------------- |
+| Next.js 16   | React framework and routing           |
+| React        | Component-based user interface        |
+| TypeScript   | Type-safe development                 |
+| Tailwind CSS | Responsive styling                    |
+| shadcn/ui    | Reusable UI components                |
+| Lucide React | Icons                                 |
+| Sonner       | Toast notifications                   |
+| Better Auth  | Authentication and session management |
 
 ### Backend
 
-| Technology | Purpose |
-|------------|---------|
-| Node.js | JavaScript runtime |
-| Express.js | REST API development |
-| MongoDB | Database |
-| jose | JWT verification |
-| JWKS | Public-key-based JWT signature verification |
-| CORS | Cross-origin request configuration |
+| Technology | Purpose                                     |
+| ---------- | ------------------------------------------- |
+| Node.js    | JavaScript runtime                          |
+| Express.js | REST API development                        |
+| MongoDB    | Database                                    |
+| jose       | JWT verification                            |
+| JWKS       | Public-key-based JWT signature verification |
+| CORS       | Cross-origin request configuration          |
 
 ### Development & Deployment
 
@@ -153,33 +152,29 @@ BookNook uses a separated frontend and backend architecture.
 
 ## 📸 Project Screenshots
 
-Add screenshots of your application inside an `images` directory in the repository.
-
 ### 🏠 Home Page
 
-![BookNook Home Page](./assets/home.png)
+![BookNook Home Page](./public/assets/home.png)
 
 ### 📚 All Books
 
-![All Books](./assets/all_books.png)
+![All Books](./public/assets/all_books.png)
 
 ### 📖 Book Details
 
-![Book Details](./assets/book-details.png)
+![Book Details](./public/assets/book-details.png)
 
 ### ➕ Add Book
 
-![Add Book](./assets/add_books.png)
+![Add Book](./public/assets/add_books.png)
 
 ### 📋 My Books
 
-![My Books](./assets/my_books.png)
+![My Books](./public/assets/my_books.png)
 
 ### 🔖 My Borrows
 
-![My Borrows](./assets/my-borrows.png)
-
-> **Note:** Replace these screenshot paths with your actual screenshots before publishing.
+![My Borrows](./public/assets/my-borrows.png)
 
 ---
 
@@ -361,27 +356,27 @@ BookNook uses REST APIs for book management and borrowing operations.
 
 ### Public Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Backend health or welcome response |
-| GET | `/books` | Retrieve books |
-| GET | `/books/new-arrivals` | Retrieve newly added books |
+| Method | Endpoint              | Description                        |
+| ------ | --------------------- | ---------------------------------- |
+| GET    | `/`                   | Backend health or welcome response |
+| GET    | `/books`              | Retrieve books                     |
+| GET    | `/books/new-arrivals` | Retrieve newly added books         |
 
 ### Protected Endpoints
 
 These endpoints require a valid JWT.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/books/:id` | Retrieve book details |
-| POST | `/add-book` | Add a book |
-| GET | `/my-books` | Retrieve authenticated user's books |
-| PATCH | `/my-books/:id` | Update a book |
-| DELETE | `/my-books/:id` | Delete a book |
-| POST | `/borrows` | Borrow a book |
-| GET | `/borrows` | Retrieve active borrowings |
-| GET | `/borrows/check` | Check borrowing status |
-| DELETE | `/borrows/:id` | Return a borrowed book |
+| Method | Endpoint         | Description                         |
+| ------ | ---------------- | ----------------------------------- |
+| GET    | `/books/:id`     | Retrieve book details               |
+| POST   | `/add-book`      | Add a book                          |
+| GET    | `/my-books`      | Retrieve authenticated user's books |
+| PATCH  | `/my-books/:id`  | Update a book                       |
+| DELETE | `/my-books/:id`  | Delete a book                       |
+| POST   | `/borrows`       | Borrow a book                       |
+| GET    | `/borrows`       | Retrieve active borrowings          |
+| GET    | `/borrows/check` | Check borrowing status              |
+| DELETE | `/borrows/:id`   | Return a borrowed book              |
 
 ### Authentication Header
 
