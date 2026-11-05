@@ -15,9 +15,9 @@ Built with **Next.js 16, React, TypeScript, Express.js, MongoDB, and Better Auth
 
 | Resource | Link |
 |----------|------|
-| 🌍 Live Website | [Visit BookNook](YOUR_LIVE_WEBSITE_URL) |
-| 💻 Frontend Repository | [GitHub Frontend](YOUR_FRONTEND_REPOSITORY_URL) |
-| ⚙️ Backend Repository | [GitHub Backend](YOUR_BACKEND_REPOSITORY_URL) |
+| 🌍 Live Website | [Visit BookNook](https://booknookclient.vercel.app/) |
+| 💻 Frontend Repository | [GitHub Frontend](https://github.com/Mahjabinjannat/BookNook-client) |
+| ⚙️ Backend Repository | [GitHub Backend](https://github.com/Mahjabinjannat/BookNook-server) |
 
 ---
 
@@ -157,27 +157,27 @@ Add screenshots of your application inside an `images` directory in the reposito
 
 ### 🏠 Home Page
 
-![BookNook Home Page](./images/home.png)
+![BookNook Home Page](./assets/home.png)
 
 ### 📚 All Books
 
-![All Books](./images/all-books.png)
+![All Books](./assets/all_books.png)
 
 ### 📖 Book Details
 
-![Book Details](./images/book-details.png)
+![Book Details](./assets/book-details.png)
 
 ### ➕ Add Book
 
-![Add Book](./images/add-book.png)
+![Add Book](./assets/add_books.png)
 
 ### 📋 My Books
 
-![My Books](./images/my-books.png)
+![My Books](./assets/my_books.png)
 
 ### 🔖 My Borrows
 
-![My Borrows](./images/my-borrows.png)
+![My Borrows](./assets/my-borrows.png)
 
 > **Note:** Replace these screenshot paths with your actual screenshots before publishing.
 
