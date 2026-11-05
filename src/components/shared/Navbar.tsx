@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+
 import {
   BookOpen,
   Menu,
@@ -12,8 +13,8 @@ import {
   LogOut,
   LibraryBig,
 } from "lucide-react";
+
 import { signOut, useSession } from "@/lib/auth-client";
-// import { useSession, signOut } from "@/lib/auth-client";
 
 const publicLinks = [
   { label: "Home", href: "/" },
@@ -41,9 +42,10 @@ export default function Navbar() {
 
   const links = isLoggedIn ? [...publicLinks, ...privateLinks] : publicLinks;
 
+  // EXACT PATH MATCHING
+  // Book details pages will not highlight All Books.
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(`${href}/`);
+    return pathname === href;
   };
 
   const closeMenus = () => {
@@ -82,6 +84,7 @@ export default function Navbar() {
         >
           <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-[#1d513b] text-white">
             <BookOpen size={22} strokeWidth={1.7} />
+
             <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-[#faf9f4] bg-[#d7a34d]" />
           </div>
 
@@ -89,6 +92,7 @@ export default function Navbar() {
             <h1 className="font-heading text-[25px] font-semibold leading-none tracking-tight text-[#19271f]">
               BookNook
             </h1>
+
             <p className="mt-1.5 hidden text-[9px] font-medium uppercase tracking-[0.27em] text-[#778077] sm:block">
               A small library for big readers
             </p>
@@ -97,23 +101,28 @@ export default function Navbar() {
 
         {/* DESKTOP NAVIGATION */}
         <nav className="hidden h-full items-center gap-7 lg:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`relative flex h-full items-center whitespace-nowrap text-sm transition-colors ${
-                isActive(link.href)
-                  ? "font-medium text-[#17291f]"
-                  : "text-[#657067] hover:text-[#1d513b]"
-              }`}
-            >
-              {link.label}
+          {links.map((link) => {
+            const active = isActive(link.href);
 
-              {isActive(link.href) && (
-                <span className="absolute bottom-0 left-0 h-px w-full bg-[#d6a44d]" />
-              )}
-            </Link>
-          ))}
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`relative flex h-full items-center whitespace-nowrap text-sm transition-colors ${
+                  active
+                    ? "font-medium text-[#17291f]"
+                    : "text-[#657067] hover:text-[#1d513b]"
+                }`}
+              >
+                {link.label}
+
+                {active && (
+                  <span className="absolute bottom-0 left-0 h-px w-full bg-[#d6a44d]" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* DESKTOP AUTH ACTIONS */}
@@ -130,7 +139,6 @@ export default function Navbar() {
                 className="flex items-center gap-2 rounded-full border border-[#e5e8e0] px-2 py-1.5 transition hover:bg-[#f0f1e9]"
               >
                 {user.image ? (
-                  // Standard img supports arbitrary OAuth avatar URLs.
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={user.image}
@@ -152,6 +160,7 @@ export default function Navbar() {
 
               {profileOpen && (
                 <>
+                  {/* CLOSE DROPDOWN ON OUTSIDE CLICK */}
                   <button
                     type="button"
                     aria-label="Close account menu"
@@ -159,11 +168,13 @@ export default function Navbar() {
                     onClick={() => setProfileOpen(false)}
                   />
 
+                  {/* PROFILE DROPDOWN */}
                   <div className="absolute right-0 top-14 z-20 w-60 rounded-xl border border-[#e9e6dc] bg-[#faf9f4] p-2 shadow-xl">
                     <div className="border-b border-[#e9e6dc] px-3 py-3">
                       <p className="truncate text-sm font-semibold">
                         {user.name}
                       </p>
+
                       <p className="truncate text-xs text-[#778077]">
                         {user.email}
                       </p>
@@ -185,6 +196,7 @@ export default function Navbar() {
                       className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 disabled:opacity-50"
                     >
                       <LogOut size={17} />
+
                       {loggingOut ? "Logging out..." : "Logout"}
                     </button>
                   </div>
@@ -194,17 +206,17 @@ export default function Navbar() {
           ) : (
             <>
               <Link
-                href="/login"
+                href="/signIn"
                 className="text-sm font-medium text-[#19271f] transition hover:text-[#1d513b]"
               >
-                Login
+                Sign In
               </Link>
 
               <Link
-                href="/register"
+                href="/signUp"
                 className="rounded-full bg-[#1d513b] px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-[#153d2c]"
               >
-                Register
+                Sign Up
               </Link>
             </>
           )}
@@ -226,21 +238,27 @@ export default function Navbar() {
       {mobileOpen && (
         <nav className="border-t border-[#e9e6dc] bg-[#faf9f4] px-5 py-5 shadow-lg lg:hidden">
           <div className="mx-auto flex max-w-[1440px] flex-col gap-1">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMenus}
-                className={`rounded-lg px-4 py-3 text-sm font-medium ${
-                  isActive(link.href)
-                    ? "bg-[#e7eee7] text-[#1d513b]"
-                    : "text-[#657067] hover:bg-[#f0f1e9]"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const active = isActive(link.href);
 
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenus}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-lg px-4 py-3 text-sm font-medium ${
+                    active
+                      ? "bg-[#e7eee7] text-[#1d513b]"
+                      : "text-[#657067] hover:bg-[#f0f1e9]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            {/* MOBILE AUTH ACTIONS */}
             {!isPending && (
               <div className="mt-4 border-t border-[#e9e6dc] pt-4">
                 {isLoggedIn ? (
@@ -254,6 +272,7 @@ export default function Navbar() {
                         <p className="truncate text-sm font-semibold">
                           {user.name}
                         </p>
+
                         <p className="truncate text-xs text-[#778077]">
                           {user.email}
                         </p>
@@ -276,25 +295,26 @@ export default function Navbar() {
                       className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50 disabled:opacity-50"
                     >
                       <LogOut size={18} />
+
                       {loggingOut ? "Logging out..." : "Logout"}
                     </button>
                   </>
                 ) : (
                   <div className="flex gap-3">
                     <Link
-                      href="/login"
+                      href="/signIn"
                       onClick={closeMenus}
                       className="flex-1 rounded-full border border-[#1d513b] px-5 py-3 text-center text-sm font-medium text-[#1d513b]"
                     >
-                      Login
+                      Sign In
                     </Link>
 
                     <Link
-                      href="/register"
+                      href="/signUp"
                       onClick={closeMenus}
                       className="flex-1 rounded-full bg-[#1d513b] px-5 py-3 text-center text-sm font-medium text-white"
                     >
-                      Register
+                      Sign Up
                     </Link>
                   </div>
                 )}
