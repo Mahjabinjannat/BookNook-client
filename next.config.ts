@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+
   turbopack: {
     rules: {
       "*.css": {
@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+      },
+    ],
   },
 };
 
